@@ -11,6 +11,7 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         _tail = null; // This line can be removed
     }
 
+    // METHODS
     //  Option 1 - Add elements
     public void Add(T data)
     {
@@ -53,6 +54,7 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         current.Next = newNode;
     }
 
+    
     // Option 2 - Show forward
     public override string ToString()
     {
@@ -124,6 +126,103 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         }
 
         return modes;
+    }
+
+    // Option 6 - Show graphic
+    public string GenerateGraph()
+    {
+        if (_head == null) return "Lista vacía";
+
+        var frequencies = GetFrequencies();
+        var graph = string.Empty;
+
+        foreach (var pair in frequencies)
+        {
+            string asterisks = new string('*', pair.Value);
+            graph += $"{pair.Key} {asterisks}\n";
+        }
+
+        return graph;
+    }
+
+    // Option 7 - Existence
+    public bool Contains(T data)
+    {
+        var current = _head;
+        while (current != null)
+        {
+            if (current.Data!.Equals(data))
+            {
+                return true;
+            }
+            current = current.Next;
+        }
+        return false;
+    }
+
+    
+    public bool RemoveOne(T data)
+    {
+        var current = _head;
+        while (current != null)
+        {
+            if (current.Data!.Equals(data))
+            {
+                RemoveNode(current);
+                return true; 
+            }
+            current = current.Next;
+        }
+        return false;
+    }
+
+    
+    public int RemoveAll(T data)
+    {
+        int count = 0;
+        var current = _head;
+        while (current != null)
+        {
+            var nextNode = current.Next; 
+            if (current.Data!.Equals(data))
+            {
+                RemoveNode(current);
+                count++;
+            }
+            current = nextNode;
+        }
+        return count;
+    }
+
+    private void RemoveNode(DoubleNode<T> node)
+    {
+        // 
+        if (node.Prev == null && node.Next == null)
+        {
+            _head = null;
+            _tail = null;
+            return;
+        }
+
+        // 
+        if (node.Prev == null)
+        {
+            _head = node.Next;
+            if (_head != null) _head.Prev = null;
+            return;
+        }
+
+        // 
+        if (node.Next == null)
+        {
+            _tail = node.Prev;
+            if (_tail != null) _tail.Next = null;
+            return;
+        }
+
+        // 
+        node.Prev.Next = node.Next;
+        node.Next.Prev = node.Prev;
     }
 
     private Dictionary<T, int> GetFrequencies()
