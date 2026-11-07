@@ -160,7 +160,7 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         return false;
     }
 
-    
+    // Option 8 - 
     public bool RemoveOne(T data)
     {
         var current = _head;
