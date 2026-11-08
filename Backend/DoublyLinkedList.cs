@@ -5,7 +5,7 @@ public class DoublyLinkedList<T> where T : IComparable<T>
     private DoubleNode<T>? _head;
     private DoubleNode<T>? _tail;
 
-    public DoublyLinkedList()
+    public DoublyLinkedList() //Fields
     {
         _head = null; // This line can be removed
         _tail = null; // This line can be removed
@@ -29,7 +29,7 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         {
             newNode.Next = _head;
             _head.Prev = newNode;
-            _head = newNode;
+            _head = newNode;//Beginning of the list
             return;
         }
 
@@ -40,7 +40,7 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         }
 
         newNode.Next = current.Next;
-        newNode.Prev = current;
+        newNode.Prev = current;//Middle of the list
 
         if (current.Next != null)
         {
@@ -48,7 +48,7 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         }
         else
         {
-            _tail = newNode; 
+            _tail = newNode; // End of the list
         }
 
         current.Next = newNode;
