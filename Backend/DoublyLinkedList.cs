@@ -85,7 +85,7 @@ public class DoublyLinkedList<T> where T : IComparable<T>
     // Option 4 - Sort in descending order
     public void SortDescending()
     {
-        if (_head == null) return;
+        if (_head == null || _head.Next == null) return;
 
         DoubleNode<T>? current = _head;
         DoubleNode<T>? temp = null;
@@ -97,10 +97,9 @@ public class DoublyLinkedList<T> where T : IComparable<T>
             current.Next = temp;
             current = current.Prev;
         }
-
+        _tail = _head;
         if (temp != null)
         {
-            _tail = _head;
             _head = temp.Prev;
         }
     }
@@ -160,7 +159,7 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         return false;
     }
 
-    // Option 8 - 
+    // Option 8 - Delete first occurrence
     public bool RemoveOne(T data)
     {
         var current = _head;
@@ -176,7 +175,7 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         return false;
     }
 
-    
+    // Delete all occurrences
     public int RemoveAll(T data)
     {
         int count = 0;

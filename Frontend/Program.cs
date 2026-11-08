@@ -46,12 +46,12 @@ do
                 Console.WriteLine($"Las modas son: {string.Join(", ", modes)}");
             }
             break;
-        case "6": // 
+        case "6": // Graphic
             Console.WriteLine("\nGráfico de ocurrencias:");
             Console.WriteLine(list.GenerateGraph());
             break;
 
-        case "7": // 
+        case "7": // Existence
             Console.Write("Ingrese el valor a buscar: ");
             var itemToSearch = Console.ReadLine()!;
             Console.WriteLine(list.Contains(itemToSearch)
@@ -59,7 +59,7 @@ do
                 : $"El elemento: '{itemToSearch}' NO existe.");
             break;
 
-        case "8": // 
+        case "8": // Delete first occurrence
             Console.Write("Ingrese el valor a eliminar (una ocurrencia): ");
             var itemToRemoveOne = Console.ReadLine()!;
             if (list.RemoveOne(itemToRemoveOne))
@@ -72,7 +72,7 @@ do
             }
             break;
 
-        case "9": //
+        case "9": // Delete all occurrences
             Console.Write("Ingrese el valor a eliminar (todas las ocurrencias): ");
             var itemToRemoveAll = Console.ReadLine()!;
             int removedCount = list.RemoveAll(itemToRemoveAll);
